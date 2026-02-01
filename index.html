@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pridhi Thareja | Portfolio</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    :root {
+      --accent: #00ffe0;  /* Your specific cyan color */
+      --bg: #0d1117;     
+      --text: #ffffff;
+      --muted: #8b949e;
+      --card-bg: #161b22;
+    }
+
+    * {
+      margin: 0; padding: 0;
+      box-sizing: border-box;
+      cursor: none; 
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background-color: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      scroll-behavior: smooth;
+      overflow-x: hidden;
+    }
+
+    /* CUSTOM CURSOR */
+    #cursor-dot {
+      width: 6px; height: 6px;
+      background-color: var(--accent);
+      position: fixed; border-radius: 50%;
+      pointer-events: none; z-index: 9999;
+    }
+    #cursor-outline {
+      width: 30px; height: 30px;
+      border: 1px solid var(--accent);
+      position: fixed; border-radius: 50%;
+      pointer-events: none; z-index: 9998;
+      transition: transform 0.1s ease-out; opacity: 0.5;
+    }
+
+    /* HERO SECTION */
+    header.hero {
+      position: relative;
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      background: #010409;
+      overflow: hidden;
+    }
+
+    #hero-canvas {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      z-index: 1;
+      opacity: 0.8;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      animation: float 5s ease-in-out infinite;
+      background: rgba(13, 17, 23, 0.6);
+      border: 1px solid rgba(0, 255, 224, 0.2);
+      backdrop-filter: blur(10px);
+      padding: 45px;
+      border-radius: 30px;
+      box-shadow: 0 10px 40px rgba(0,0,0,0.5);
+    }
+
+    .hero-content h1 span {
+      font-weight: 700;
+      color: var(--accent);
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-15px); }
+    }
+
+    .typing {
+      font-size: 1.1rem;
+      color: var(--accent);
+      margin-top: 10px;
+      min-height: 1.5em;
+      letter-spacing: 2px;
+    }
+
+    /* CONTENT SECTIONS */
+    main { position: relative; z-index: 3; background: var(--bg); }
+
+    section {
+      opacity: 0; transform: translateY(30px);
+      transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+      padding: 80px 20px;
+      max-width: 900px; margin: 0 auto;
+    }
+
+    section.visible { opacity: 1; transform: none; }
+
+    section h2 {
+      font-size: 2rem; margin-bottom: 25px;
+      border-left: 5px solid var(--accent); padding-left: 15px;
+    }
+
+    /* Updated Link Colors */
+    a {
+      color: var(--accent) !important;
+      text-decoration: none;
+      transition: 0.3s;
+    }
+
+    a:hover {
+      filter: brightness(1.2);
+      text-decoration: underline;
+    }
+
+    .project {
+      background: var(--card-bg); padding: 25px;
+      border: 1px solid #30363d;
+      border-left: 4px solid var(--accent);
+      margin-bottom: 25px; border-radius: 12px;
+      transition: all 0.3s ease;
+    }
+
+    .project:hover { 
+      transform: translateY(-5px); 
+      box-shadow: 0 5px 15px rgba(0, 255, 224, 0.1); 
+    }
+
+    .skills-list li {
+      background: #21262d; padding: 8px 15px; 
+      border-radius: 20px; border: 1px solid var(--accent);
+      display: inline-block; margin: 5px;
+    }
+
+    .socials { margin-top: 30px; text-align: center; }
+    .socials a {
+      margin: 0 15px; color: var(--accent) !important;
+      font-size: 1.8rem; display: inline-block;
+    }
+    .socials a:hover { color: #fff !important; transform: translateY(-5px); }
+
+    footer {
+      text-align: center; padding: 40px;
+      font-size: 0.9rem; color: var(--muted);
+      background: #010409; border-top: 1px solid #30363d;
+    }
+  </style>
+</head>
+<body>
+
+  <div id="cursor-dot"></div>
+  <div id="cursor-outline"></div>
+  
+  <header class="hero">
+    <canvas id="hero-canvas"></canvas>
+    <div class="hero-content">
+      <h1>Hello, I'm <span>Pridhi Thareja</span></h1>
+      <img width="250" src="Banner.png" alt="" style="margin: 15px 0; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.5);">
+      <p class="typing" id="typing"></p>
+    </div>
+  </header>
+
+  <main>
+    <section id="about">
+      <h2>About Me</h2>
+      <p>
+        I’m Pridhi Thareja, currently pursuing B.E. in Computer Science and Engineering at Thapar Institute of Engineering & Technology.
+        I’m passionate about the intersection of technology and creativity—from exploring web development to crafting engaging digital designs. I enjoy working on visual content using tools like Canva and Adobe Express, and I also love expressing myself through poetry writing.
+        On campus, I actively contribute to the design department of Girl Up TIET DB.
+      </p>
+    </section>
+
+    <section id="skills">
+      <h2>Skills</h2>
+      <ul class="skills-list" style="list-style: none; padding: 0;">
+        <li>Tech Design</li>
+        <li>Web Development</li>
+        <li>C++/C Programming</li>
+        <li>My SQL Workbench</li>
+        <li>MATLAB & RStudio</li>
+        <li>Poetry Writing</li>
+      </ul>
+    </section>
+
+    <section id="projects">
+      <h2>Featured Work</h2>
+      <div class="project">
+        <h3>Website ~ Khanna Khazana</h3>
+        <p>A recipe and restaurant showcase website made with HTML/CSS. <br>
+          <a href="https://github.com/Pridhi-24/Khanna-Khazana" target="_blank">GitHub</a> | 
+          <a href="https://khanna-khazana-ivr1.vercel.app" target="_blank">Live Link</a>
+        </p>
+      </div>
+      <div class="project">
+        <h3>Tech Designs & Poetry</h3>
+        <p>A blend of visual storytelling and creative writing.<br>
+          <a href="https://drive.google.com/drive/folders/17ZHe60Xz-5hOYZhr0ai77Rn2Eu6mx38l?usp=sharing" target="_blank">Visuals</a> | 
+          <a href="https://drive.google.com/drive/folders/1PW5JLFawzjsNeRLA2PXT9ZAds65PDIuM?usp=sharing" target="_blank">Poetry</a>
+        </p>
+      </div>
+    </section>
+<div style="text-align: center; margin-top: 50px; padding: 0 20px;">
+  <p style="font-size: 1.1rem; font-weight: 300; letter-spacing: 1px; color: var(--text); margin-bottom: 10px;">
+    Bridging <span style="color: var(--accent); font-weight: 500;">logic</span> and <span style="color: var(--accent); font-weight: 500;">design</span>
+  </p>
+  <p style="font-size: 0.9rem; color: var(--muted); text-transform: uppercase; letter-spacing: 2px;">
+    Connect with me online
+  </p>
+</div>
+    <div class="socials">
+      <a href="https://github.com/Pridhi-24" target="_blank"><i class="fab fa-github"></i></a>
+      <a href="https://www.linkedin.com/in/pridhi-thareja-1237a9322" target="_blank"><i class="fab fa-linkedin"></i></a>
+    </div>
+
+    <div class="contact-info" style="text-align: center; background: #161b22; padding: 30px; margin-top: 50px; border-radius: 15px; border: 1px solid #30363d;">
+      <p style="margin-bottom: 10px; color: #8b949e;">Reach out for collaborations</p>
+      <a href="mailto:pri.thareja24@gmail.com">pri.thareja24@gmail.com</a> | 
+      <a href="tel:+9465003293">9465003293</a>
+    </div>
+
+    <footer>
+      <p>-PRIDHI THAREJA-</p>
+    </footer>
+  </main>
+
+  <script>
+    // --- POETIC FLOW CANVAS EFFECT ---
+    const canvas = document.getElementById('hero-canvas');
+    const ctx = canvas.getContext('2d');
+    let particles = [];
+
+    function init() {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+      particles = [];
+      for (let i = 0; i < 60; i++) {
+        particles.push(new Particle());
+      }
+    }
+
+    class Particle {
+      constructor() {
+        this.x = Math.random() * canvas.width;
+        this.y = Math.random() * canvas.height;
+        this.vx = Math.random() * 0.6 - 0.3;
+        this.vy = Math.random() * 0.6 - 0.3;
+        this.radius = Math.random() * 2 + 1;
+      }
+      update() {
+        this.x += this.vx; this.y += this.vy;
+        if (this.x < 0 || this.x > canvas.width) this.vx *= -1;
+        if (this.y < 0 || this.y > canvas.height) this.vy *= -1;
+      }
+      draw() {
+        ctx.beginPath(); ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+        ctx.fillStyle = 'rgba(0, 255, 224, 0.5)'; ctx.fill();
+      }
+    }
+
+    function animate() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      for (let i = 0; i < particles.length; i++) {
+        let p = particles[i]; p.update(); p.draw();
+        for (let j = i + 1; j < particles.length; j++) {
+          let p2 = particles[j];
+          let dist = Math.hypot(p.x - p2.x, p.y - p2.y);
+          if (dist < 150) {
+            ctx.beginPath(); ctx.moveTo(p.x, p.y);
+            ctx.quadraticCurveTo(p.x + (p2.x - p.x)/2, p.y + (p2.y - p.y)/2 + 20, p2.x, p2.y);
+            ctx.strokeStyle = `rgba(0, 255, 224, ${0.2 - dist/750})`; ctx.stroke();
+          }
+        }
+      }
+      requestAnimationFrame(animate);
+    }
+
+    window.addEventListener('resize', init);
+    init(); animate();
+
+    // --- CURSOR ---
+    const dot = document.getElementById('cursor-dot');
+    const outline = document.getElementById('cursor-outline');
+    window.addEventListener('mousemove', (e) => {
+      dot.style.left = e.clientX + 'px'; dot.style.top = e.clientY + 'px';
+      outline.animate({ left: (e.clientX - 15) + 'px', top: (e.clientY - 15) + 'px' }, { duration: 400, fill: "forwards" });
+    });
+
+    // --- TYPING ---
+    const texts = ["Creative", "Curious", "Blending Tech with Innovation"];
+    let count = 0, index = 0;
+    function type() {
+      if (count === texts.length) count = 0;
+      let curr = texts[count]; let letter = curr.slice(0, ++index);
+      document.getElementById("typing").textContent = letter;
+      if (letter.length === curr.length) {
+        setTimeout(() => { index = 0; count++; type(); }, 2000);
+      } else { setTimeout(type, 100); }
+    }
+    type();
+
+    // --- SCROLL REVEAL ---
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(e => { if (e.isIntersecting) e.target.classList.add("visible"); });
+    }, { threshold: 0.1 });
+    document.querySelectorAll("section").forEach(s => observer.observe(s));
+  </script>
+</body>
+</html>
